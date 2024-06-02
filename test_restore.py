@@ -11,7 +11,7 @@ import time
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 parser = argparse.ArgumentParser(description="PyTorch BasicIRSTD test")
-parser.add_argument("--model_names", default='Trid', type=str, 
+parser.add_argument("--model_names", default='DNANet', type=str, 
                     help="model_name: 'ACM', 'ALCNet', 'DNANet', 'ISNet', 'UIUNet', 'RDIAN', 'ISTDU-Net', 'U-Net', 'RISTDnet'")
 parser.add_argument("--pth_dirs", default='Trid_60.pth.tar', type=str, help="checkpoint dir, default=None or ['NUDT-SIRST/ACM_400.pth.tar','NUAA-SIRST/ACM_400.pth.tar']")
 parser.add_argument("--dataset_dir", default='./datasets', type=str, help="train_dataset_dir")
@@ -41,8 +41,7 @@ def test():
     
     eval_mIoU = mIoU() 
     eval_PD_FA = PD_FA()
-    tbar = tqdm(test_loader)
-    for idx_iter, (img, size, img_dir) in enumerate(tbar):
+    for idx_iter, (img, size, img_dir) in enumerate(test_loader):
         pred=img
         _,_,h,w=img.shape
         pred=Variable(pred).cuda()
