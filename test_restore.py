@@ -38,9 +38,6 @@ def test():
     net = Net(model_name=opt.model_name, mode='test').cuda()
     net.load_state_dict(torch.load(opt.pth_dir)['state_dict'])
     net.eval()
-    
-    eval_mIoU = mIoU() 
-    eval_PD_FA = PD_FA()
     for idx_iter, (img, size, img_dir) in enumerate(test_loader):
         pred=img
         _,_,h,w=img.shape
