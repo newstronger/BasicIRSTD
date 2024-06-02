@@ -36,21 +36,21 @@ def test():
     test_loader = DataLoader(dataset=test_set, num_workers=8, batch_size=opt.batchSize, shuffle=False)
     
     net = Net(model_name=opt.model_name, mode='test').cuda()
-    # net.load_state_dict(torch.load(opt.pth_dir)['state_dict'])
+    net.load_state_dict(torch.load(opt.pth_dir)['state_dict'])
     net.eval()
     for idx_iter, (img, size, img_dir) in enumerate(test_loader):
         pred=img
         _,_,h,w=img.shape
         pred=Variable(pred).cuda()
         img = Variable(img).cuda().squeeze(0).unsqueeze(0)
-        for i in range(0, h, 512):
-            for j in range(0,w,512):
-                sub_img=img[:,:,i:i+512,j:j+512]
-                sub_pred=net.forward(sub_img)
-                pred[:,:,i:i+512,j:j+512]=sub_pred
+        pred=net.forward(img)
+        # for i in range(0, h, 512):
+        #     for j in range(0,w,512):
+        #         sub_img=img[:,:,i:i+512,j:j+512]
+        #         sub_pred=net.forward(sub_img)
+        #         pred[:,:,i:i+512,j:j+512]=sub_pred
         pred = pred[:,:,:size[0],:size[1]] 
-        
-        ### save img
+
         if opt.save_img == True:
             _img=(pred[0,0,:,:]>opt.threshold).float().cpu()
             img_save = transforms.ToPILImage()(_img)
