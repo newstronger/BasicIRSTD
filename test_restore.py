@@ -36,7 +36,7 @@ def test():
     test_loader = DataLoader(dataset=test_set, num_workers=8, batch_size=opt.batchSize, shuffle=False)
     
     net = Net(model_name=opt.model_name, mode='test').cuda()
-    net.load_state_dict(torch.load(opt.pth_dir)['state_dict'])
+    # net.load_state_dict(torch.load(opt.pth_dir)['state_dict'])
     net.eval()
     for idx_iter, (img, size, img_dir) in enumerate(test_loader):
         pred=img
