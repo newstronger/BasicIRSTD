@@ -2,8 +2,6 @@ import argparse
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from torchvision.transforms import functional as F
-from model.SimMAT.SimMAT import SimMATIRSTD
-from tqdm import tqdm
 from net import Net
 from dataset import *
 import matplotlib.pyplot as plt
