@@ -63,5 +63,5 @@ if __name__ == '__main__':
     opt.model_name = opt.model_names
     opt.train_dataset_name = opt.dataset_names
     opt.pth_dir=opt.pth_dirs
-    test()
+    # test()
         
