@@ -43,12 +43,12 @@ def test():
         _,_,h,w=img.shape
         pred=Variable(pred).cuda()
         img = Variable(img).cuda().squeeze(0).unsqueeze(0)
-        pred=net.forward(img)
-        # for i in range(0, h, 512):
-        #     for j in range(0,w,512):
-        #         sub_img=img[:,:,i:i+512,j:j+512]
-        #         sub_pred=net.forward(sub_img)
-        #         pred[:,:,i:i+512,j:j+512]=sub_pred
+        # pred=net.forward(img)
+        for i in range(0, h, 512):
+            for j in range(0,w,512):
+                sub_img=img[:,:,i:i+512,j:j+512]
+                sub_pred=net.forward(sub_img)
+                pred[:,:,i:i+512,j:j+512]=sub_pred
         pred = pred[:,:,:size[0],:size[1]] 
 
         if opt.save_img == True:
