@@ -62,18 +62,9 @@ def test():
             img_save.save(opt.save_img_dir + img_dir[0] + '.png')  
 
 if __name__ == '__main__':
-    str1=opt.save_log + 'test_' + (time.ctime()).replace(' ', '_').replace(':', '_') + '.txt'
-    opt.f = open(str1, 'w')
     opt.test_dataset_name = opt.dataset_names
     opt.model_name = opt.model_names
     opt.train_dataset_name = opt.dataset_names
-    print(opt.pth_dirs)
-    opt.f.write(opt.pth_dirs)
-    print(opt.test_dataset_name)
-    opt.f.write(opt.test_dataset_name + '\n')
     opt.pth_dir=opt.pth_dirs
     test()
-    print('\n')
-    opt.f.write('\n')
-    opt.f.close()
         
